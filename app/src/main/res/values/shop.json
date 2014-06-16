@@ -1,0 +1,69 @@
+{	
+	"version":1
+	"shops":[
+		{
+			"title":"แสงทองไบค์ แอนด์ พาร์ท",
+			"logo":"",
+			"lat":"13.843809",
+			"lon":"100.49911",
+			"website":"http://www.saengthong.com",
+			"open":"จันทร์-เสาร์ 8.30-19.00\nอาทิตย์ 8.30-17.00",
+			"phones":["0855935599","025251789","025264664"],
+			"description":"",
+		},
+		{
+			"title":"นครไทยจักรยาน",
+			"logo":"",
+			"lat":"13.774287",
+			"lon":"100.630816",
+			"website":"http://www.nktbike.com",
+			"open":"",
+			"close":"",
+			"address":"2923 – 2925 ติดถนนใหญ่ระหว่างซอยลาดพร้าว 101/1-101/2 แขวงคลองจั่น เขตบางกะปิ กรุงเทพฯ 10240",
+			"phone":["023771701","023781900"],
+			"email":"nkt_bike@hotmail.com",
+			"description":"",
+		},
+		{
+			"title":"Aim Bike",
+			"logo":"",
+			"lat":"13.9086365",
+			"lon":"100.5385145",
+			"website":"http://www.aimbike.com",
+			"open":"อังคาร-อาทิตย์ 09:30-19:00",
+			"close":"",
+			"address":"55/450 ถ.บอนด์สรีท บางพูด ปากเกร็ด นนทบุรี "
+			"phone":["029840427",""],
+			"email":"aim@aimbike.com",
+			"description":"",
+		},
+		{
+			"title":"โปรไบค์",
+			"logo":"",
+			"lat":"13.738949",
+			"lon":"100.5393",
+			
+			"website":"http://www.probike.co.th",
+			"open":"จันทร์-ศุกร์ 10.00-19.00\n เสาร์ 8.30-19.00\n อาทิตย์ 8.30-17.00",
+			"close":"",
+			"address":"237/2 Rajadumri Rd. Lumpini. Patumwan. Bangkok. Thailand 10330",
+			"phone":["022533384","022541077"],
+			"email":"qa@probike.co.th",
+			"description":"",
+		},
+		{
+			"title":"โปรไบค์ (พระราม3)",
+			"logo":"",
+			"lat":"13.73451",
+			"lon":"100.540207",
+			"website":"http://www.probike.co.th",
+			"open":"จันทร์-เสาร์ 10.00-19.00\n อาทิตย์ 10.00-18.30",
+			"close":"",
+			"address":"978 Rama 3 Rd., (Soi 40) Bang-Pong phang, yannawa Bangkok 10120",
+			"phone":["022949434","022949435","022949436","022949437"],
+			"email":"qa@probike.co.th",
+			"description":"",
+		},
+
+	]
+}
