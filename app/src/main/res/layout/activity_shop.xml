@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="info.srihawong.bikeshop.ShopActivity"
+    android:padding="5dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:id="@+id/titleTextView" />
+        android:id="@+id/titleTextView"
+        android:textSize="@dimen/text_size_big" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,7 +20,8 @@
         android:layout_below="@+id/titleTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_marginTop="22dp"
+        android:textSize="@dimen/text_size_small" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,8 +32,7 @@
         android:maxHeight="10dp"
         android:maxWidth="10dp"
         android:src="@drawable/ic_favorite_inactive"
-        android:layout_marginRight="33dp"
-        android:layout_below="@+id/titleTextView"
+        android:layout_above="@+id/addressTextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -68,7 +70,8 @@
         android:id="@+id/emailTextView"
         android:layout_alignBottom="@+id/imageView2"
         android:layout_alignLeft="@+id/phoneTextView"
-        android:layout_alignStart="@+id/phoneTextView" />
+        android:layout_alignStart="@+id/phoneTextView"
+        android:autoLink="email" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -86,7 +89,8 @@
         android:id="@+id/websiteTextView"
         android:layout_alignBottom="@+id/imageView4"
         android:layout_alignLeft="@+id/emailTextView"
-        android:layout_alignStart="@+id/emailTextView" />
+        android:layout_alignStart="@+id/emailTextView"
+        android:autoLink="none|web" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -101,9 +105,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/imageView5"
-        android:layout_toRightOf="@+id/imageView5" />
+        android:text="Mon-Sat 9.00-18.00\nSun 10.00-15.00"
+        android:id="@+id/openTextView"
+        android:layout_below="@+id/websiteTextView"
+        android:layout_alignLeft="@+id/websiteTextView"
+        android:layout_alignStart="@+id/websiteTextView" />
+
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/galleryGridView"
+        android:layout_below="@+id/openTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numColumns="3"
+        android:choiceMode="none" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapImageView"
+        android:src="@drawable/ic_map"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toLeftOf="@+id/imageView" />
+
 
 </RelativeLayout>

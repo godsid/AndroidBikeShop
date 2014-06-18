@@ -1,5 +1,6 @@
 package info.srihawong.bikeshop;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -7,16 +8,28 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -159,6 +172,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -172,13 +187,72 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
 
         public PlaceholderFragment() {
+
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            View rootView;
+
+            if(sectionNumber==1){
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            }else{
+                rootView = inflater.inflate(R.layout.nearby_section, container, false);
+                nearBy(rootView);
+            }
             return rootView;
+        }
+
+        public void nearBy(View rootView){
+            AQuery aq = new AQuery(rootView);
+            final ListView nearByListView = (ListView) rootView.findViewById(R.id.nearByListView);
+
+            final ArrayList<Shop> shopArrayList = new ArrayList<Shop>();
+            final NearByAdapter nearByAdapter = new NearByAdapter(rootView.getContext(),shopArrayList);
+            nearByListView.setAdapter(nearByAdapter);
+
+            nearByListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent shopIntent = new Intent(getActivity(),ShopActivity.class);
+                    shopIntent.putExtra("id",(int)id);
+                    startActivity(shopIntent);
+                }
+            });
+
+
+
+            aq.ajax(Config.apiUrl,JSONObject.class,Config.apiCacheTime,new AjaxCallback<JSONObject>(){
+                @Override
+                public void callback(String url, JSONObject object, AjaxStatus status) {
+                    if(object!=null){
+                        try {
+                            JSONArray shopArray = object.getJSONArray("shops");
+                            for(int i=0,j=shopArray.length();i<j;i++){
+                                shopArrayList.add(new Shop(shopArray.getJSONObject(i)));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        nearByAdapter.notifyDataSetChanged();
+                    }
+                    //super.callback(url, object, status);
+                }
+            });
+            //arrayAdapter = new ArrayAdapter<String>(rootView.getContext(),android.R.layout.simple_list_item_1,listSpinner);
+            //shopArrayList.add(new Shop(1, "NichCycle", "http://nichcyling.com", "พัฒนาการ" ,"Mon-Sat 10.00-17.00", "080300042", "description", 13.0344, 100.498822));
+
+            /*
+            aq.ajax("/data/shop.json", JSONObject.class,new AjaxCallback<JSONObject>(){
+                @Override
+                public void callback(String url, JSONObject object, AjaxStatus status) {
+                    Log.d("tui", status.getMessage() + status.getError());
+                    //super.callback(url, object, status);
+                }
+            });
+            */
         }
     }
 
