@@ -2,7 +2,9 @@ package info.srihawong.bikeshop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,8 @@ import com.androidquery.callback.AjaxStatus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URI;
 
 import info.srihawong.bikeshop.R;
 
@@ -44,10 +48,16 @@ public class ShopActivity extends Activity {
         mapImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mapIntent = new Intent(getBaseContext(),MapsDirectionActivity.class);
+                /*Intent mapIntent = new Intent(getBaseContext(),MapsDirectionActivity.class);
                 mapIntent.putExtra("lat",lat);
                 mapIntent.putExtra("lng",lng);
                 startActivity(mapIntent);
+                */
+               // google.navigation:q=an+address+city
+                Log.d("tui","google.navigation:daddr="+String.valueOf(lat)+","+String.valueOf(lng));
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("google.navigation:daddr="+String.valueOf(lat)+","+String.valueOf(lng)));
+                startActivity(intent);
             }
         });
         aq.ajax(Config.apiUrl, JSONObject.class,Config.apiCacheTime,new AjaxCallback<JSONObject>(){
